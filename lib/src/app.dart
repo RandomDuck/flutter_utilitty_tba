@@ -1,7 +1,7 @@
-//import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'pages/favtab.dart';
-import 'pages/generator.dart';
+import 'pages/namegen.dart';
+import 'components/navigationitem.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,17 +13,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = GeneratorPage();
-        break;
-      case 1:
-        page = FavoritesTab();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
-    }
+    List<NavigationBarItem> list = [
+      NavigationBarItem(
+        GeneratorPage(),
+        Icons.account_circle_rounded,
+        'Name generator',
+      ),
+      NavigationBarItem(
+        FavoritesTab(),
+        Icons.favorite,
+        'Favorites list',
+      ),
+      NavigationBarItem(
+        Placeholder(),
+        Icons.plagiarism,
+        'placeholder',
+      ),
+    ];
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
@@ -33,14 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: NavigationRail(
                 extended: constraints.maxWidth >= 800,
                 destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home),
-                    label: Text('Home'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.favorite),
-                    label: Text('Favorites'),
-                  ),
+                  for (var item in list)
+                    NavigationRailDestination(
+                      icon: Icon(item.icon),
+                      label: Text(item.label),
+                    ),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
@@ -53,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
+                child: list[selectedIndex].page,
               ),
             ),
           ],

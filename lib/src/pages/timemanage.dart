@@ -7,8 +7,11 @@ class PunchcClock extends StatefulWidget {
 }
 
 class _PunchcClockState extends State<PunchcClock> {
+  bool active = false;
+  
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Column(
       children: [
         SizedBox(
@@ -19,16 +22,30 @@ class _PunchcClockState extends State<PunchcClock> {
           icon: Icons.add_box,
         ),
         Expanded(
+          flex: 2,
           child: Wrap(
-            children: [],
+            children: [
+              for(element in punchCardList)
+            ],
           ),
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: !active
+                ? theme.colorScheme.primary
+                : theme.colorScheme.background,
+            foregroundColor: !active
+                ? theme.colorScheme.onPrimary
+                : theme.colorScheme.onBackground,
+          ),
           onPressed: () {},
-          child: Text('Done'),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text('Done'),
+          ),
         ),
-        SizedBox(
-          height: 120,
+        Spacer(
+          flex: 1,
         ),
       ],
     );

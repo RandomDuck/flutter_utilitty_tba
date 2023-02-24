@@ -7,7 +7,7 @@ class BigCard extends StatelessWidget {
     required this.pair,
   });
 
-  final WordPair pair;
+  final dynamic pair;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class BigCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text(
-          pair.asLowerCase,
-          semanticsLabel: pair.asPascalCase,
+          pair.toString(),
+          semanticsLabel: pair.toString(),
           style: style,
         ),
       ),

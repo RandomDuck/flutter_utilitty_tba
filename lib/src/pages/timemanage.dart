@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/punchcardinput.dart';
 
 class PunchcClock extends StatefulWidget {
   @override
@@ -13,20 +14,21 @@ class _PunchcClockState extends State<PunchcClock> {
         SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Spacer(),
-            Text('New punchcard:'),
-            SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              flex: 2,
-              child: TextField(),
-            ),
-            Spacer(),
-          ],
+        PunchCardInput(
+          onPressed: () {},
+          icon: Icons.add_box,
+        ),
+        Expanded(
+          child: Wrap(
+            children: [],
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text('Done'),
+        ),
+        SizedBox(
+          height: 120,
         ),
       ],
     );

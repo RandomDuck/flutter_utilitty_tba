@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    if (Platform.isAndroid || Platform.isAndroid) {
+    if (Platform.isAndroid || Platform.isIOS) {
       list.add(NavigationBarItem(
         WebViewApp(),
         Icons.web,
@@ -63,33 +63,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
-        return Row(
-          children: [
-            SafeArea(
-              child: NavigationRail(
-                extended: constraints.maxWidth >= 800,
-                destinations: [
-                  for (var item in list)
-                    NavigationRailDestination(
-                      icon: Icon(item.icon),
-                      label: Text(item.label),
+        return Container(
+          color: Theme.of(context).colorScheme.onBackground,
+          child: Row(
+            children: [
+              SafeArea(
+                child: NavigationRail(
+                  extended: constraints.maxWidth >= 800,
+                  destinations: [
+                    for (var item in list)
+                      NavigationRailDestination(
+                        icon: Icon(item.icon),
+                        label: Text(item.label),
+                      ),
+                  ],
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: SafeArea(
+                  left: false,
+                  right: false,
+                  child: Expanded(
+                    child: Container(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      child: list[selectedIndex].page,
                     ),
-                ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
+                  ),
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: list[selectedIndex].page,
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       }),
     );

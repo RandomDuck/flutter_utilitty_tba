@@ -3,6 +3,9 @@ import 'pages/favtab.dart';
 import 'pages/namegenerator.dart';
 import 'pages/diceroller.dart';
 import 'pages/timemanage.dart';
+import 'pages/todo.dart';
+import 'pages/timer.dart';
+import 'pages/web.dart';
 import 'components/navigationitem.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -32,9 +35,24 @@ class _MyHomePageState extends State<MyHomePage> {
         'Dice roller',
       ),
       NavigationBarItem(
+        TodoList(),
+        Icons.check,
+        'Todo list',
+      ),
+      NavigationBarItem(
+        TimerPage(title: 'Timer'),
+        Icons.alarm,
+        'Timer',
+      ),
+      NavigationBarItem(
         PunchcClock(),
         Icons.punch_clock_rounded,
         'Time manager',
+      ),
+      NavigationBarItem(
+        WebViewApp(),
+        Icons.web,
+        'Webb',
       ),
     ];
 

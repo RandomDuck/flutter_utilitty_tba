@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/favtab.dart';
 import 'pages/namegenerator.dart';
 import 'pages/diceroller.dart';
+import 'pages/timemanage.dart';
 import 'components/navigationitem.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -29,6 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
         DiceRoller(),
         Icons.replay_circle_filled_rounded,
         'Dice roller',
+      ),
+      NavigationBarItem(
+        PunchcClock(),
+        Icons.punch_clock_rounded,
+        'Time manager',
       ),
     ];
 

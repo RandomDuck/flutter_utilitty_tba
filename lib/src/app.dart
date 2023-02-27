@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'pages/favtab.dart';
 import 'pages/namegenerator.dart';
@@ -49,12 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
         Icons.punch_clock_rounded,
         'Time manager',
       ),
-      NavigationBarItem(
+    ];
+
+    if (Platform.isAndroid || Platform.isAndroid) {
+      list.add(NavigationBarItem(
         WebViewApp(),
         Icons.web,
         'Webb',
-      ),
-    ];
+      ));
+    }
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {

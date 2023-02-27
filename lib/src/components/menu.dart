@@ -100,6 +100,9 @@ class _MenuState extends State<Menu> {
           case _MenuOptions.loadHtmlString:
             await _onLoadHtmlStringExample(widget.controller, context);
             break;
+          case _MenuOptions.javascriptChannel:
+            // TODO: Handle this case.
+            break;
         }
       },
       itemBuilder: (context) => [
